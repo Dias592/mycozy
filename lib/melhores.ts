@@ -414,6 +414,12 @@ export const RANKING_PAGES: RankingPage[] = [
           image: '/images/produtos/melhor-luminaria-pendente-quarto.webp',
           price: undefined,
           affiliateUrl: 'https://meli.la/1KJVJKb',
+          rating: 4.9,
+          depoimentos: [
+            'Achei o material excelente e amei o resultado depois de instalado.',
+            'Ilumina bastante — pra quem quer claridade no ambiente, vale a pena; não precisou nem acender todas as lâmpadas.',
+            'Chegou certinho e o produto parece muito bem feito, mesmo antes de montar.',
+          ],
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',

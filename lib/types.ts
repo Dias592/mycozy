@@ -6,6 +6,9 @@ export type Product = {
   originalPrice?: number;
   rating?: number;
   reviewCount?: number;
+  // Paráfrase própria de avaliações reais 5 estrelas — nunca o texto original do
+  // comprador, por direito autoral. Preenchido só quando há dado real.
+  depoimentos?: string[];
   affiliateUrl: string;
   pros: string[];
   cons: string[];

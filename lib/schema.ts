@@ -28,7 +28,7 @@ export function generateItemListSchema(products: Product[], listName: string) {
               aggregateRating: {
                 '@type': 'AggregateRating',
                 ratingValue: product.rating,
-                reviewCount: product.reviewCount ?? 1,
+                ...(product.reviewCount !== undefined ? { reviewCount: product.reviewCount } : {}),
               },
             }
           : {}),

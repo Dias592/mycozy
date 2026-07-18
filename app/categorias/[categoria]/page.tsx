@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPostsByCategoria } from '@/lib/posts';
@@ -8,6 +9,7 @@ import { CATEGORIA_DESCRIPTIONS, CATEGORIA_LABELS } from '@/lib/seo-keywords';
 import { SITE_URL } from '@/lib/site-config';
 import { buildGraph, generateBreadcrumbSchema } from '@/lib/schema';
 import type { Categoria } from '@/lib/types';
+import { PENDING_IMAGE } from '@/lib/types';
 
 const CATEGORIAS = Object.keys(CATEGORIA_LABELS) as Categoria[];
 
@@ -78,14 +80,37 @@ export default function CategoriaPage({ params }: { params: { categoria: string 
             );
           }
 
+          const coverImage = ranking.entries[0]?.product.image;
+
           return (
             <Link
               key={produto.slug}
               href={`/melhores/${produto.slug}/`}
-              className="flex min-h-[120px] flex-col justify-between border border-line bg-linen p-5"
+              className="group flex flex-col overflow-hidden border border-line bg-linen"
             >
-              <span className="font-serif text-lg text-ink">{ranking.title}</span>
-              <span className="text-xs text-sienna">Ver comparativo →</span>
+              <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                {coverImage && coverImage !== PENDING_IMAGE ? (
+                  <Image
+                    src={coverImage}
+                    alt={ranking.title}
+                    fill
+                    className="object-contain p-5 transition-transform duration-200 group-hover:scale-[1.04]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div
+                    className="h-full w-full"
+                    style={{
+                      backgroundImage:
+                        'repeating-linear-gradient(45deg, #EDE7DC, #EDE7DC 10px, #E3DBC9 10px, #E3DBC9 20px)',
+                    }}
+                  />
+                )}
+              </div>
+              <div className="flex flex-1 flex-col justify-between p-5">
+                <span className="font-serif text-lg text-ink">{ranking.title}</span>
+                <span className="mt-3 text-xs text-sienna">Ver comparativo →</span>
+              </div>
             </Link>
           );
         })}

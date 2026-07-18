@@ -65,6 +65,40 @@ export default function ProductCard({ product, position, highlight }: ProductCar
         </AffiliateLink>
       )}
 
+      {product.rating !== undefined && (
+        <div
+          itemProp="aggregateRating"
+          itemScope
+          itemType="https://schema.org/AggregateRating"
+          className="border-b border-line px-5 py-4"
+        >
+          <meta itemProp="ratingValue" content={String(product.rating)} />
+          {product.reviewCount !== undefined && (
+            <meta itemProp="reviewCount" content={String(product.reviewCount)} />
+          )}
+          <div className="flex items-center gap-2 text-sm">
+            <span aria-hidden="true" className="text-sienna">
+              ★
+            </span>
+            <span className="font-semibold text-ink">{product.rating.toFixed(1)}</span>
+            <span className="text-sand">avaliação no Mercado Livre</span>
+          </div>
+
+          {product.depoimentos && product.depoimentos.length > 0 && (
+            <div className="mt-3 space-y-3">
+              {product.depoimentos.map((depoimento) => (
+                <blockquote key={depoimento} className="border-l-2 border-line pl-3 text-sm italic text-sand">
+                  “{depoimento}”
+                  <cite className="mt-1 block text-xs not-italic text-sand">
+                    — avaliação de comprador no Mercado Livre
+                  </cite>
+                </blockquote>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
         <div>
           {product.price !== undefined ? (
