@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .stitch {
+    height: 1px;
+    background-image: linear-gradient(to right, theme('colors.sand') 60%, transparent 0%);
+    background-position: top;
+    background-size: 12px 1px;
+    background-repeat: repeat-x;
+    opacity: 0.5;
+  }
+}
