@@ -51,6 +51,24 @@ export function generateFAQSchema(faq: FAQ[]) {
   };
 }
 
+export function generateOrganizationSchema() {
+  return {
+    '@type': 'Organization',
+    name: 'My Cozy Home',
+    url: SITE_URL,
+    description:
+      'Guias e comparativos independentes de produtos de decoração, organização, cozinha e cama, mesa e banho.',
+  };
+}
+
+export function generateWebSiteSchema() {
+  return {
+    '@type': 'WebSite',
+    url: SITE_URL,
+    name: 'My Cozy Home',
+  };
+}
+
 export function generateBreadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     '@type': 'BreadcrumbList',

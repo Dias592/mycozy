@@ -7,7 +7,7 @@ import { getRankingBySlug, getRankingsByCategoria } from '@/lib/melhores';
 import { getProdutosPorCategoria } from '@/lib/catalogo-produtos';
 import { CATEGORIA_DESCRIPTIONS, CATEGORIA_LABELS } from '@/lib/seo-keywords';
 import { SITE_URL } from '@/lib/site-config';
-import { buildGraph, generateBreadcrumbSchema } from '@/lib/schema';
+import { buildGraph, generateBreadcrumbSchema, generateItemListSchema } from '@/lib/schema';
 import type { Categoria } from '@/lib/types';
 import { PENDING_IMAGE } from '@/lib/types';
 
@@ -44,10 +44,18 @@ export default function CategoriaPage({ params }: { params: { categoria: string 
   if (!label) notFound();
 
   const posts = getPostsByCategoria(categoria);
-  const rankingsPublicados = getRankingsByCategoria(categoria).length;
+  const rankings = getRankingsByCategoria(categoria);
+  const rankingsPublicados = rankings.length;
   const produtosPlanejados = getProdutosPorCategoria(categoria);
 
+  const categoryProducts = rankings
+    .map((ranking) => ranking.entries[0]?.product)
+    .filter((product): product is NonNullable<typeof product> => Boolean(product));
+
   const schema = buildGraph(
+    ...(categoryProducts.length > 0
+      ? [generateItemListSchema(categoryProducts, `${label} — guias publicados`)]
+      : []),
     generateBreadcrumbSchema([
       { name: 'Início', url: '/' },
       { name: label, url: `/categorias/${categoria}/` },

@@ -415,6 +415,7 @@ export const RANKING_PAGES: RankingPage[] = [
           price: undefined,
           affiliateUrl: 'https://meli.la/1KJVJKb',
           rating: 4.9,
+          reviewCount: 95,
           depoimentos: [
             'Achei o material excelente e amei o resultado depois de instalado.',
             'Ilumina bastante — pra quem quer claridade no ambiente, vale a pena; não precisou nem acender todas as lâmpadas.',

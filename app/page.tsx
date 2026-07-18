@@ -5,6 +5,7 @@ import { CATEGORIA_DESCRIPTIONS, CATEGORIA_LABELS } from '@/lib/seo-keywords';
 import { getLatestPosts } from '@/lib/posts';
 import { getRankingsByCategoria } from '@/lib/melhores';
 import { SITE_URL } from '@/lib/site-config';
+import { buildGraph, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
 import type { Categoria } from '@/lib/types';
 
 const OG_IMAGE = {
@@ -36,9 +37,11 @@ const CATEGORIA_SWATCH: Record<Categoria, string> = {
 
 export default function HomePage() {
   const latestPosts = getLatestPosts(3);
+  const schema = buildGraph(generateOrganizationSchema(), generateWebSiteSchema());
 
   return (
     <div className="mx-auto max-w-[1100px] px-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <section className="grid grid-cols-1 items-center gap-14 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
         <div>
           <div className="mb-4 text-xs font-medium uppercase tracking-[0.14em] text-moss">
