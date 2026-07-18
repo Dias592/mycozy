@@ -5,6 +5,8 @@ import { getPostsByCategoria } from '@/lib/posts';
 import { getRankingBySlug, getRankingsByCategoria } from '@/lib/melhores';
 import { getProdutosPorCategoria } from '@/lib/catalogo-produtos';
 import { CATEGORIA_DESCRIPTIONS, CATEGORIA_LABELS } from '@/lib/seo-keywords';
+import { SITE_URL } from '@/lib/site-config';
+import { buildGraph, generateBreadcrumbSchema } from '@/lib/schema';
 import type { Categoria } from '@/lib/types';
 
 const CATEGORIAS = Object.keys(CATEGORIA_LABELS) as Categoria[];
@@ -18,21 +20,19 @@ export function generateMetadata({ params }: { params: { categoria: string } }):
   const label = CATEGORIA_LABELS[categoria];
   if (!label) return {};
 
+  const description = `Guias e comparativos de produtos de ${label.toLowerCase()} para deixar sua casa mais aconchegante.`;
+  const image = { url: '/images/hero/my-cozy-home-og.webp', width: 1200, height: 630, alt: label };
+  const title = `${label} para Casa: Guias e Comparativos 2026`;
+
   return {
-    title: label,
-    description: `Guias e comparativos de produtos de ${label.toLowerCase()} para deixar sua casa mais aconchegante.`,
-    alternates: { canonical: `https://mycozyhome.com.br/categorias/${categoria}/` },
+    title,
+    description,
+    alternates: { canonical: `${SITE_URL}/categorias/${categoria}/` },
     openGraph: {
       url: `/categorias/${categoria}/`,
-      images: [
-        {
-          url: '/images/hero/my-cozy-home-og.webp',
-          width: 1200,
-          height: 630,
-          alt: label,
-        },
-      ],
+      images: [image],
     },
+    twitter: { card: 'summary_large_image', title, description, images: [image.url] },
   };
 }
 
@@ -45,8 +45,16 @@ export default function CategoriaPage({ params }: { params: { categoria: string 
   const rankingsPublicados = getRankingsByCategoria(categoria).length;
   const produtosPlanejados = getProdutosPorCategoria(categoria);
 
+  const schema = buildGraph(
+    generateBreadcrumbSchema([
+      { name: 'Início', url: '/' },
+      { name: label, url: `/categorias/${categoria}/` },
+    ])
+  );
+
   return (
     <div className="mx-auto max-w-[1100px] px-8 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <h1 className="font-serif text-3xl text-ink">{label}</h1>
       <p className="mt-3 max-w-2xl text-sand">{CATEGORIA_DESCRIPTIONS[categoria]}</p>
 

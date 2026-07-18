@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/site-config';
 
 const OG_IMAGE = {
   url: '/images/hero/my-cozy-home-og.webp',
@@ -7,11 +8,15 @@ const OG_IMAGE = {
   alt: 'My Cozy Home - Guia de casa e decoração',
 };
 
+const TITLE = 'Contato';
+const DESCRIPTION = 'Fale com o My Cozy Home.';
+
 export const metadata: Metadata = {
-  title: 'Contato',
-  description: 'Fale com o My Cozy Home.',
-  alternates: { canonical: 'https://mycozyhome.com.br/contato/' },
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/contato/` },
   openGraph: { url: '/contato/', images: [OG_IMAGE] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: [OG_IMAGE.url] },
 };
 
 export default function ContatoPage() {

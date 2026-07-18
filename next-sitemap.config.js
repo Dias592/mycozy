@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://mycozyhome.com.br',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://mycozyhome.site',
   generateRobotsTxt: true,
   trailingSlash: true,
   exclude: ['/api/*'],

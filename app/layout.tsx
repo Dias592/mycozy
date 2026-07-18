@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Fraunces, Inter } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { SITE_URL } from '@/lib/site-config';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -16,7 +17,6 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const SITE_URL = process.env.SITE_URL || 'https://mycozyhome.com.br';
 const OG_IMAGE = {
   url: '/images/hero/my-cozy-home-og.webp',
   width: 1200,
@@ -38,6 +38,16 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: '/',
     images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'My Cozy Home | Guia de Casa e Decoração',
+    description:
+      'Guias e comparativos de produtos de decoração, organização, cozinha e cama, mesa e banho para deixar sua casa mais aconchegante.',
+    images: [OG_IMAGE.url],
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 

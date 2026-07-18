@@ -1,6 +1,5 @@
 import type { FAQ, Product } from './types';
-
-const SITE_URL = process.env.SITE_URL || 'https://mycozyhome.com.br';
+import { SITE_URL } from './site-config';
 
 export function generateItemListSchema(products: Product[], listName: string) {
   return {
@@ -13,13 +12,17 @@ export function generateItemListSchema(products: Product[], listName: string) {
         '@type': 'Product',
         name: product.title,
         image: `${SITE_URL}${product.image}`,
-        offers: {
-          '@type': 'Offer',
-          price: product.price,
-          priceCurrency: 'BRL',
-          url: product.affiliateUrl,
-          availability: 'https://schema.org/InStock',
-        },
+        ...(product.price !== undefined
+          ? {
+              offers: {
+                '@type': 'Offer',
+                price: product.price,
+                priceCurrency: 'BRL',
+                url: product.affiliateUrl,
+                availability: 'https://schema.org/InStock',
+              },
+            }
+          : {}),
         ...(product.rating
           ? {
               aggregateRating: {

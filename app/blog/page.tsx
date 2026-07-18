@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { POSTS } from '@/lib/posts';
+import { SITE_URL } from '@/lib/site-config';
 
 const OG_IMAGE = {
   url: '/images/hero/my-cozy-home-og.webp',
@@ -9,11 +10,15 @@ const OG_IMAGE = {
   alt: 'My Cozy Home - Guia de casa e decoração',
 };
 
+const TITLE = 'Blog';
+const DESCRIPTION = 'Guias, comparativos e dicas sobre decoração, organização, cozinha e cama, mesa e banho.';
+
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Guias, comparativos e dicas sobre decoração, organização, cozinha e cama, mesa e banho.',
-  alternates: { canonical: 'https://mycozyhome.com.br/blog/' },
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/blog/` },
   openGraph: { url: '/blog/', images: [OG_IMAGE] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: [OG_IMAGE.url] },
 };
 
 export default function BlogPage() {

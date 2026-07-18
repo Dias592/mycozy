@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, POSTS } from '@/lib/posts';
 import { getItem } from '@/lib/mercadolivre';
 import { buildGraph, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/schema';
+import { SITE_URL } from '@/lib/site-config';
 import SatellitePost from '@/components/SatellitePost';
 import type { Product } from '@/lib/types';
 
@@ -14,14 +15,17 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const post = getPostBySlug(params.slug);
   if (!post) return {};
 
+  const image = { url: post.image, width: 1200, height: 630, alt: post.title };
+
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: `https://mycozyhome.com.br/blog/${post.slug}/` },
+    alternates: { canonical: `${SITE_URL}/blog/${post.slug}/` },
     openGraph: {
       url: `/blog/${post.slug}/`,
-      images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+      images: [image],
     },
+    twitter: { card: 'summary_large_image', title: post.title, description: post.description, images: [image.url] },
   };
 }
 

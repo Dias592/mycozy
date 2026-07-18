@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SITE_URL } from '@/lib/site-config';
 
 const OG_IMAGE = {
   url: '/images/hero/my-cozy-home-og.webp',
@@ -7,11 +8,15 @@ const OG_IMAGE = {
   alt: 'My Cozy Home - Guia de casa e decoração',
 };
 
+const TITLE = 'Sobre';
+const DESCRIPTION = 'Conheça o My Cozy Home e como testamos e comparamos produtos de casa e decoração.';
+
 export const metadata: Metadata = {
-  title: 'Sobre',
-  description: 'Conheça o My Cozy Home e como testamos e comparamos produtos de casa e decoração.',
-  alternates: { canonical: 'https://mycozyhome.com.br/sobre/' },
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/sobre/` },
   openGraph: { url: '/sobre/', images: [OG_IMAGE] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: [OG_IMAGE.url] },
 };
 
 export default function SobrePage() {

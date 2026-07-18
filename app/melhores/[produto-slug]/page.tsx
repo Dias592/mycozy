@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getRankingBySlug, RANKING_PAGES } from '@/lib/melhores';
 import { buildGraph, generateBreadcrumbSchema, generateFAQSchema, generateItemListSchema } from '@/lib/schema';
+import { SITE_URL } from '@/lib/site-config';
+import { CATEGORIA_LABELS } from '@/lib/seo-keywords';
 import ComparisonTable from '@/components/ComparisonTable';
 import ProductCard from '@/components/ProductCard';
 import ProductImageStrip from '@/components/ProductImageStrip';
@@ -34,10 +37,16 @@ export function generateMetadata({
   return {
     title: page.title,
     description: page.description,
-    alternates: { canonical: `https://mycozyhome.com.br/melhores/${page.slug}/` },
+    alternates: { canonical: `${SITE_URL}/melhores/${page.slug}/` },
     openGraph: {
       url: `/melhores/${page.slug}/`,
       images: [ogImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.title,
+      description: page.description,
+      images: [ogImage.url],
     },
   };
 }
@@ -51,12 +60,14 @@ export default function MelhoresPage({
   if (!page) notFound();
 
   const products = page.entries.map((entry) => entry.product);
+  const categoriaLabel = CATEGORIA_LABELS[page.categoria];
 
   const schema = buildGraph(
     ...(products.length > 0 ? [generateItemListSchema(products, page.title)] : []),
     generateFAQSchema(page.faq),
     generateBreadcrumbSchema([
       { name: 'Início', url: '/' },
+      { name: categoriaLabel, url: `/categorias/${page.categoria}/` },
       { name: page.title, url: `/melhores/${page.slug}/` },
     ])
   );
@@ -66,6 +77,17 @@ export default function MelhoresPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <article className="mx-auto max-w-3xl px-4 py-16">
         <AffiliateDisclosure />
+
+        <nav aria-label="Breadcrumb" className="text-xs text-sand">
+          <Link href="/" className="hover:text-sienna">
+            Início
+          </Link>
+          {' / '}
+          <Link href={`/categorias/${page.categoria}/`} className="hover:text-sienna">
+            {categoriaLabel}
+          </Link>
+        </nav>
+
         <h1 className="mt-2 font-serif text-3xl text-ink">{page.title}</h1>
 
         {products.length > 0 && (

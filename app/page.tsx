@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { CATEGORIA_DESCRIPTIONS, CATEGORIA_LABELS } from '@/lib/seo-keywords';
 import { getLatestPosts } from '@/lib/posts';
 import { getRankingsByCategoria } from '@/lib/melhores';
+import { SITE_URL } from '@/lib/site-config';
 import type { Categoria } from '@/lib/types';
 
 const OG_IMAGE = {
@@ -13,12 +14,16 @@ const OG_IMAGE = {
   alt: 'My Cozy Home - Guia de casa e decoração',
 };
 
+const TITLE = 'My Cozy Home | Guia de Casa e Decoração';
+const DESCRIPTION =
+  'Comparativos e guias de produtos de decoração, organização, cozinha e cama, mesa e banho para deixar sua casa mais aconchegante.';
+
 export const metadata: Metadata = {
-  title: 'My Cozy Home | Guia de Casa e Decoração',
-  description:
-    'Comparativos e guias de produtos de decoração, organização, cozinha e cama, mesa e banho para deixar sua casa mais aconchegante.',
-  alternates: { canonical: 'https://mycozyhome.com.br/' },
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/` },
   openGraph: { url: '/', images: [OG_IMAGE] },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: [OG_IMAGE.url] },
 };
 
 const CATEGORIAS = Object.keys(CATEGORIA_LABELS) as Categoria[];
