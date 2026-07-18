@@ -18,9 +18,6 @@ export default function ComparisonTable({ products }: { products: Product[] }) {
                 Produto
               </th>
               <th scope="col" className="py-3 pr-4 font-medium">
-                Preço
-              </th>
-              <th scope="col" className="py-3 pr-4 font-medium">
                 Avaliação
               </th>
               <th scope="col" className="py-3 pr-4 font-medium">
@@ -59,11 +56,6 @@ export default function ComparisonTable({ products }: { products: Product[] }) {
                       )}
                     </span>
                   </a>
-                </td>
-                <td className="py-3 pr-4 align-middle">
-                  {product.price !== undefined
-                    ? product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                    : '—'}
                 </td>
                 <td className="py-3 pr-4 align-middle">
                   {product.rating ? `${product.rating.toFixed(1)} / 5` : '—'}

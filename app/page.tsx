@@ -165,9 +165,9 @@ export default function HomePage() {
             </p>
           </div>
           <div className="min-w-[180px] flex-1">
-            <div className="mb-1.5 font-serif text-xl">Sempre atualizado</div>
+            <div className="mb-1.5 font-serif text-xl">Curadoria contínua</div>
             <p className="text-sm text-[#C9C2AE]">
-              Preços e disponibilidade revisados continuamente.
+              Conteúdo revisado com frequência conforme novos produtos são avaliados.
             </p>
           </div>
         </div>
