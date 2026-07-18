@@ -35,8 +35,8 @@ export default function ProductCard({ product, position, highlight }: ProductCar
         </div>
       )}
 
-      <div className="flex min-h-[200px] items-center justify-center border-b border-line bg-white p-7">
-        {product.image === PENDING_IMAGE ? (
+      {product.image === PENDING_IMAGE ? (
+        <div className="flex min-h-[200px] items-center justify-center border-b border-line bg-white p-7">
           <div
             className="flex aspect-square w-full max-w-[220px] items-center justify-center p-3 text-center text-xs text-sand"
             style={{
@@ -46,18 +46,24 @@ export default function ProductCard({ product, position, highlight }: ProductCar
           >
             Foto do anúncio pendente
           </div>
-        ) : (
-          <div className="relative h-[220px] w-full">
+        </div>
+      ) : (
+        <AffiliateLink
+          href={product.affiliateUrl}
+          ariaLabel={`Ver oferta de ${product.title} no Mercado Livre`}
+          className="group flex min-h-[200px] cursor-pointer items-center justify-center border-b border-line bg-white p-7"
+        >
+          <div className="relative h-[220px] w-full overflow-hidden">
             <Image
               src={product.image}
               alt={product.title}
               fill
-              className="object-contain"
+              className="object-contain transition-transform duration-200 group-hover:scale-[1.04]"
               sizes="(max-width: 640px) 100vw, 480px"
             />
           </div>
-        )}
-      </div>
+        </AffiliateLink>
+      )}
 
       <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
         <div>

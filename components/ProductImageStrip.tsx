@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { Product } from '@/lib/types';
 import { PENDING_IMAGE } from '@/lib/types';
+import AffiliateLink from './AffiliateLink';
 
 function ImageOrPlaceholder({
   product,
@@ -22,16 +23,20 @@ function ImageOrPlaceholder({
   }
 
   return (
-    <div className="relative h-full w-full">
+    <AffiliateLink
+      href={product.affiliateUrl}
+      ariaLabel={`Ver oferta de ${product.title} no Mercado Livre`}
+      className="group relative block h-full w-full cursor-pointer"
+    >
       <Image
         src={product.image}
         alt={product.title}
         fill
         priority
-        className="object-contain"
+        className="object-contain transition-transform duration-200 group-hover:scale-[1.04]"
         sizes={sizes}
       />
-    </div>
+    </AffiliateLink>
   );
 }
 

@@ -60,15 +60,17 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
-          <Image
-            src="/images/hero/my-cozy-home-hero.webp"
-            alt="Casa aconchegante decorada com casinhas de madeira e ramos de pinheiro"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 480px"
-          />
+        <div className="relative aspect-[4/5]">
+          <div className="absolute inset-0 overflow-hidden rounded-sm">
+            <Image
+              src="/images/hero/my-cozy-home-hero.webp"
+              alt="Casa aconchegante decorada com casinhas de madeira e ramos de pinheiro"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 480px"
+            />
+          </div>
           <div className="absolute -bottom-6 -left-6 max-w-[220px] bg-linen p-5 text-sm text-sand shadow-sm">
             <strong className="mb-1 block font-serif text-base font-medium text-ink">
               Comparativos honestos
