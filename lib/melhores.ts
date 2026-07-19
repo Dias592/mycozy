@@ -6089,7 +6089,7 @@ export const RANKING_PAGES: RankingPage[] = [
           title: 'Colcha Piquet',
           image: '/images/produtos/melhor-colcha-piquet.webp',
           price: undefined,
-          affiliateUrl: 'https://meli.la/1Q9coC3',
+          affiliateUrl: 'https://meli.la/2kAvuw4',
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',
