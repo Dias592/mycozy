@@ -5114,7 +5114,7 @@ export const RANKING_PAGES: RankingPage[] = [
           title: 'Prateleira Divisora Dupla Cozinha 2 Unid Armario 32cm',
           image: '/images/produtos/melhor-prateleira-armario.webp',
           price: undefined,
-          affiliateUrl: 'https://meli.la/2m9irSu',
+          affiliateUrl: 'https://meli.la/32xKMeJ',
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',
