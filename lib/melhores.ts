@@ -1578,7 +1578,7 @@ export const RANKING_PAGES: RankingPage[] = [
           title: 'Cafeteira Elétrica',
           image: '/images/produtos/melhor-cafeteira-eletrica.webp',
           price: undefined,
-          affiliateUrl: 'https://meli.la/22PGP2j',
+          affiliateUrl: 'https://meli.la/1f5zftT',
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',
