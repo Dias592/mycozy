@@ -859,7 +859,7 @@ export const RANKING_PAGES: RankingPage[] = [
           title: 'Difusor De Aromas',
           image: '/images/produtos/melhor-difusor-aromas.webp',
           price: undefined,
-          affiliateUrl: 'https://meli.la/178fbi2',
+          affiliateUrl: 'https://meli.la/1YojyQt',
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',
