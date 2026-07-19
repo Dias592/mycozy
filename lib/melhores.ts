@@ -493,6 +493,13 @@ export const RANKING_PAGES: RankingPage[] = [
           image: '/images/produtos/melhor-abajur-mesa.webp',
           price: undefined,
           affiliateUrl: 'https://meli.la/2mQ6UZm',
+          rating: 5.0,
+          reviewCount: 82,
+          depoimentos: [
+            'Ilumina muito bem e tem um brilho bonito, ficou elegante no ambiente.',
+            'Amei o resultado — ficou lindo e deu um ar de luxo na decoração.',
+            'Perfeito, chegou exatamente como esperado.',
+          ],
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',
