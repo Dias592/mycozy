@@ -931,7 +931,7 @@ export const RANKING_PAGES: RankingPage[] = [
           title: 'Cabide Antideslizante Kit',
           image: '/images/produtos/melhor-cabide-antideslizante.webp',
           price: undefined,
-          affiliateUrl: 'https://meli.la/1KPrXxE',
+          affiliateUrl: 'https://meli.la/2mR2YUg',
           pros: [],
           cons: [],
           lastUpdated: '2026-07-17',
