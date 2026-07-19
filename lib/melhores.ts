@@ -213,7 +213,7 @@ export const RANKING_PAGES: RankingPage[] = [
           title: 'Britânia BAF16A',
           image: '/images/produtos/melhor-air-fryer-3.webp',
           price: undefined,
-          affiliateUrl: 'https://meli.la/2BZvzz3',
+          affiliateUrl: 'https://meli.la/2Ydgjha',
           pros: [],
           cons: [],
           specs: { Capacidade: '16L' },
