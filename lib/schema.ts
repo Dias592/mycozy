@@ -5,35 +5,45 @@ export function generateItemListSchema(products: Product[], listName: string) {
   return {
     '@type': 'ItemList',
     name: listName,
-    itemListElement: products.map((product, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'Product',
-        name: product.title,
-        image: `${SITE_URL}${product.image}`,
-        ...(product.price !== undefined
-          ? {
-              offers: {
-                '@type': 'Offer',
-                price: product.price,
-                priceCurrency: 'BRL',
-                url: product.affiliateUrl,
-                availability: 'https://schema.org/InStock',
-              },
-            }
-          : {}),
-        ...(product.rating
-          ? {
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: product.rating,
-                ...(product.reviewCount !== undefined ? { reviewCount: product.reviewCount } : {}),
-              },
-            }
-          : {}),
-      },
-    })),
+    itemListElement: products.map((product, index) => {
+      // Sem avaliação real, não reivindicar elegibilidade de Product rich result
+      // (Google exige offers, review ou aggregateRating — sem nenhum dos três,
+      // um @type: Product vira erro no Search Console). Item simples até haver dado real.
+      if (!product.rating) {
+        return {
+          '@type': 'ListItem',
+          position: index + 1,
+          name: product.title,
+          image: `${SITE_URL}${product.image}`,
+        };
+      }
+
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Product',
+          name: product.title,
+          image: `${SITE_URL}${product.image}`,
+          ...(product.price !== undefined
+            ? {
+                offers: {
+                  '@type': 'Offer',
+                  price: product.price,
+                  priceCurrency: 'BRL',
+                  url: product.affiliateUrl,
+                  availability: 'https://schema.org/InStock',
+                },
+              }
+            : {}),
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: product.rating,
+            ...(product.reviewCount !== undefined ? { reviewCount: product.reviewCount } : {}),
+          },
+        },
+      };
+    }),
   };
 }
 
