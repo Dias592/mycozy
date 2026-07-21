@@ -6,6 +6,15 @@ module.exports = {
   exclude: ['/api/*'],
   robotsTxtOptions: {
     policies: [
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'ChatGPT-User', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'Claude-Web', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'Bingbot', allow: '/' },
+      { userAgent: 'anthropic-ai', allow: '/' },
+      { userAgent: 'cohere-ai', allow: '/' },
       {
         userAgent: '*',
         allow: '/',
